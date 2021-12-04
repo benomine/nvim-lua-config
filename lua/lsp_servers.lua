@@ -6,7 +6,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local lsp_servers = {'omnisharp', 'gopls' , 'fsautocomplete', 'vimls', 'yamlls',  'angularls', 'dockerls', 'tsserver', 'tailwindcss', 'terraformls', 'vls', 'cssls', 'jsonls', 'pyright', 'html', 'sumneko_lua' }
+local lsp_servers = {'omnisharp', 'gopls' , 'fsautocomplete', 'vimls', 'yamlls',  'angularls', 'dockerls', 'tsserver', 'terraformls', 'vls', 'cssls', 'jsonls', 'pyright', 'html', 'sumneko_lua', 'ltex' }
 
 local omnisharp_path_bin = lsp_servers_path .. '/omnisharp/Omnisharp.exe'
 
@@ -32,6 +32,17 @@ for _, server in ipairs(lsp_servers) do
     lspconfig[server].setup {
       cmd = { omnisharp_path_bin, '--languageserver', '--hostPID', tostring(pid) },
       capabilities = capabilities,
+    }
+  elseif server == 'ltex' then
+    lspconfig[server].setup {
+       cmd = { lsp_servers_path .. '/ltex-ls/bin/ltex-ls.bat' },
+       settings = {
+         ltex = {
+           enabled= {"latex", "tex", "bib", "md"},
+           checkFrequency="save",
+           language="fr-CA"
+         }
+       }
     }
   elseif server == 'gopls' then
     lspconfig[server].setup {

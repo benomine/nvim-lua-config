@@ -2,7 +2,7 @@
 
 Aller voir le lien : [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) pour l'ensemble des LSP disponibles et comment les installer.
 
-Quelques exemples :
+* Quelques exemples (nécessitent d'avoir node installé ainsi que yarn) :
 
 ``npm i -g vscode-langservers-extracted``
 
@@ -18,4 +18,10 @@ Quelques exemples :
 
 ``npm install -g vls``
 
+* Pour Omnisharp :
 
+Aller sur le lien [Omnisharp](https://github.com/OmniSharp/omnisharp-roslyn/releases) pour télécharger les dernières release.
+
+* Pour Ltex-ls :
+
+Aller sur le lien [Ltex](https://github.com/valentjn/ltex-ls/releases) pour télécharger les dernières release.
