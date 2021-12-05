@@ -16,8 +16,33 @@ vim.api.nvim_set_keymap(
   { noremap = true }
 )
 
-local lspkind = require "lspkind"
-lspkind.init()
+local lspkind = require 'lspkind'
+lspkind.init( {
+  with_text = true,
+  symbol_map = {
+    Text = "",
+    Method = "ƒ",
+    Function = "ﬦ",
+    Constructor = "",
+    Variable = "",
+    Class = "",
+    Interface = "ﰮ",
+    Module = "",
+    Property = "",
+    Unit = "",
+    Value = "",
+    Enum = "了",
+    Keyword = "",
+    Snippet = "﬌",
+    Color = "",
+    File = "",
+    Folder = "",
+    EnumMember = "",
+    Constant = "",
+    Struct = "",
+  },
+}
+)
 
 local cmp = require "cmp"
 
@@ -33,7 +58,14 @@ cmp.setup {
       },
       { "i", "c" }
     ),
-
+    ["<CR>"] = cmp.mapping {
+      i = cmp.mapping.confirm { select = true },
+    },
+    ["<Right>"] = cmp.mapping {
+      i = cmp.mapping.confirm { select = true },
+    },
+    ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
     ["<c-space>"] = cmp.mapping {
       i = cmp.mapping.complete(),
       c = function(
@@ -61,6 +93,9 @@ cmp.setup {
     { name = "path" },
     { name = "luasnip" },
     { name = "buffer", keyword_length = 5 },
+    { name = "file", keyword_length = 5 },
+    { name = "file_line", keyword_length = 5 },
+    { name = "spell" },
   },
 
   sorting = {
@@ -87,7 +122,9 @@ cmp.setup {
       cmp.config.compare.order,
     },
   },
-
+  documentation = {
+      border = { "╭", "─", "╮", "|", "╯", "─", "╰", "|" },
+  },
   snippet = {
     expand = function(args)
       require("luasnip").lsp_expand(args.body)
@@ -97,15 +134,17 @@ cmp.setup {
   formatting = {
     format = lspkind.cmp_format {
       with_text = true,
-      menu = {
-        buffer = "[buf]",
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[api]",
-        path = "[path]",
-        luasnip = "[snip]",
-        gh_issues = "[issues]",
-        tn = "[TabNine]",
-      },
+      menu =
+      {
+        nvim_lsp = "ﲳ",
+        nvim_lua = "",
+        treesitter = "",
+        path = "ﱮ",
+        buffer = "﬘",
+        zsh = "",
+        vsnip = "",
+        spell = "暈",
+      }
     },
   },
 

@@ -40,7 +40,7 @@ return require('packer').startup({function(use)
   use 'hrsh7th/cmp-nvim-lsp'
   use 'L3MON4D3/LuaSnip'
   use 'rafamadriz/friendly-snippets'
-  use "onsails/lspkind-nvim"
+  use 'onsails/lspkind-nvim'
   use {
       'lewis6991/gitsigns.nvim',
       requires = { 'nvim-lua/plenary.nvim' },
@@ -53,8 +53,9 @@ return require('packer').startup({function(use)
     require('packer').sync()
   end
 
-  local saga = require 'lspsaga'
-  saga.init_lsp_saga()
+  require('lspsaga').init_lsp_saga()
+
+  require('luasnip.loaders.from_vscode').lazy_load()
 
 end,
 config = {

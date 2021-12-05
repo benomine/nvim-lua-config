@@ -75,4 +75,3 @@ for _, server in ipairs(lsp_servers) do
     lspconfig[server].setup { capabilities = capabilities }
   end
 end
-
