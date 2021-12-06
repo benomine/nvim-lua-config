@@ -34,7 +34,7 @@ Aller sur le lien [Ltex](https://github.com/valentjn/ltex-ls/releases) pour tél
 
 # Installation de Minimap
 
-* Installation nécessaire de [<font-size ="3">🛰</font> code-minimap](https://github.com/wfxr/code-minimap)
+* Installation nécessaire de [🛰 code-minimap](https://github.com/wfxr/code-minimap)
 
 ``scoop bucket add extras``
 ``scoop install code-minimap``
