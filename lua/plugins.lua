@@ -29,6 +29,7 @@ return require('packer').startup({function(use)
   use 'github/copilot.vim'
   use 'wfxr/minimap.vim'
   use 'voldikss/vim-floaterm'
+  use 'ap/vim-css-color'
 
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-telescope/telescope-github.nvim'

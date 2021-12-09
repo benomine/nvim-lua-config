@@ -4,15 +4,15 @@ Aller voir le lien : [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) 
 
 * Quelques exemples (nécessitent d'avoir node installé ainsi que yarn) :
 
-``npm i -g vscode-langservers-extracted``
+``npm install -g vscode-langservers-extracted``
 
 ``npm install -g dockerfile-language-server-nodejs``
 
 ``npm install -g typescript typescript-language-server``
 
-``npm install -g vim-language-server``
+``npm install -g vscode-html-languageservice``
 
-``npm install -g @tailwindcss/language-server``
+``npm install -g vim-language-server``
 
 ``yarn global add yaml-language-server``
 
