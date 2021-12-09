@@ -48,6 +48,8 @@ return require('packer').startup({function(use)
   use 'L3MON4D3/LuaSnip'
   use 'rafamadriz/friendly-snippets'
   use 'onsails/lspkind-nvim'
+  use 'b0o/schemastore.nvim'
+  use 'mattn/emmet-vim'
 
   use {
       'lewis6991/gitsigns.nvim',

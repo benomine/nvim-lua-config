@@ -79,6 +79,16 @@ for _, server in ipairs(lsp_servers) do
       capabilities = capabilities,
       on_attach = on_attach,
     }
+  elseif server == 'jsonls' then
+    lspconfig[server].setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      settings = {
+        json = {
+          schemas = require('schemastore').json.schemas(),
+        },
+      },
+    }
   elseif server == 'sumneko_lua' then
       lspconfig[server].setup {
         cmd = {sumneko_binary, '-E', sumneko_root_path .. '/main.lua'};
