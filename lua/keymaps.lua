@@ -27,6 +27,8 @@ keymap('i', 'jk', '<Esc>', options)
 keymap('i', 'kj', '<Esc>', options)
 keymap('i', '<c-u>', '<ESC>viwUi', options)
 keymap('i', '<expr><TAB>', 'pumvisible() ? "<C-n>" : "<TAB>"', options)
+keymap('i', '<C-J>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
 
 keymap('v', '<', '<gv', options)
 keymap('v', '>', '>gv', options)
+

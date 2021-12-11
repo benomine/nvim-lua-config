@@ -33,7 +33,7 @@ local on_attach = function(_ , bufnr)
     buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
-local lsp_servers = {'omnisharp', 'gopls' , 'fsautocomplete', 'vimls', 'yamlls',  'angularls', 'dockerls', 'tsserver', 'terraformls', 'vls', 'cssls', 'jsonls', 'pyright', 'html', 'sumneko_lua', 'ltex' }
+local lsp_servers = {'omnisharp', 'gopls' , 'fsautocomplete', 'vimls', 'yamlls', 'dockerls', 'tsserver', 'terraformls', 'vls', 'cssls', 'jsonls', 'pyright', 'html', 'sumneko_lua', 'ltex' }
 
 local omnisharp_path_bin = lsp_servers_path .. '/omnisharp/Omnisharp.exe'
 
