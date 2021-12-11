@@ -36,6 +36,8 @@ return require('packer').startup({function(use)
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
 
+  use 'vim-test/vim-test'
+
   use 'nvim-treesitter/nvim-treesitter'
   use 'nvim-treesitter/playground'
 

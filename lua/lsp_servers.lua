@@ -33,7 +33,7 @@ local on_attach = function(_ , bufnr)
     buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
-local lsp_servers = {'omnisharp', 'gopls' , 'fsautocomplete', 'vimls', 'yamlls', 'dockerls', 'tsserver', 'terraformls', 'vls', 'cssls', 'jsonls', 'pyright', 'html', 'sumneko_lua', 'ltex' }
+local lsp_servers = {'omnisharp', 'gopls' , 'fsautocomplete', 'vimls', 'yamlls', 'dockerls', 'tsserver', 'vuels', 'cssls', 'jsonls', 'pyright', 'html', 'sumneko_lua', 'ltex', 'jdtls', 'svelte' }
 
 local omnisharp_path_bin = lsp_servers_path .. '/omnisharp/Omnisharp.exe'
 
@@ -61,6 +61,12 @@ for _, server in ipairs(lsp_servers) do
       capabilities = capabilities,
       on_attach = on_attach,
     }
+  elseif server == 'fsautocomplete' then
+      lspconfig[server].setup {
+        cmd = { lsp_servers_path .. '/fsautocomplete/fsautocomplete.exe', '--background-service-enabled' },
+        capabilities = capabilities,
+        on_attach = on_attach,
+      }
   elseif server == 'ltex' then
     lspconfig[server].setup {
        cmd = { lsp_servers_path .. '/ltex-ls/bin/ltex-ls.bat' },
@@ -88,6 +94,18 @@ for _, server in ipairs(lsp_servers) do
           schemas = require('schemastore').json.schemas(),
         },
       },
+    }
+  elseif server == 'jdtls' then
+    lspconfig[server].setup {
+	cmd = { 'java', '-jar', lsp_servers_path .. '/jdtls/features/org.eclipse.equinox.executable_3.8.1400.v20211117-0650.jar' },
+	on_attach = on_attach,
+	capabilities = capabilities,
+    }
+  elseif server == 'cssls' or server == 'html' then
+    lspconfig[server].setup {
+	cmd = { "vscode-css-language-server.cmd", "--stdio" },
+	on_attach = on_attach,
+	capabilities = capabilities,
     }
   elseif server == 'sumneko_lua' then
       lspconfig[server].setup {
