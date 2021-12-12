@@ -12,6 +12,12 @@ Aller voir le lien : [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) 
 
 ``npm install -g vscode-html-languageservice``
 
+``npm install -g vscode-css-languageservice``
+
+``npm install -g svelte-language-server``
+
+``npm install -g vim-language-server``
+
 ``npm install -g vim-language-server``
 
 ``yarn global add yaml-language-server``
@@ -25,6 +31,10 @@ Aller sur le lien [Omnisharp](https://github.com/OmniSharp/omnisharp-roslyn/rele
 * Pour Ltex-ls :
 
 Aller sur le lien [Ltex](https://github.com/valentjn/ltex-ls/releases) pour télécharger les dernières release.
+
+* Jdtls :
+
+Aller sur le lien [Jdtls](https://projects.eclipse.org/projects/eclipse.jdt.ls) pour télécharger les dernières release.
 
 * Utilisation de snippets, ici [LuaSnip](https://github.com/L3MON4D3/LuaSnip) + [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
 
