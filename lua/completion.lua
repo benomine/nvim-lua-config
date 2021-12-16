@@ -1,18 +1,18 @@
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
-vim.opt.shortmess:append "c"
+vim.opt.shortmess:append 'c'
 
 vim.api.nvim_set_keymap(
-  "i",
-  "<C-x><C-m>",
-  [[<c-r>=luaeval("require('complextras').complete_matching_line()")<CR>]],
+  'i',
+  '<C-x><C-m>',
+  [[<c-r>=luaeval('require('complextras').complete_matching_line()')<CR>]],
   { noremap = true }
 )
 
 vim.api.nvim_set_keymap(
-  "i",
-  "<C-x><C-d>",
-  [[<c-r>=luaeval("require('complextras').complete_line_from_cwd()")<CR>]],
+  'i',
+  '<C-x><C-d>',
+  [[<c-r>=luaeval('require('complextras').complete_line_from_cwd()')<CR>]],
   { noremap = true }
 )
 
@@ -20,53 +20,53 @@ local lspkind = require 'lspkind'
 lspkind.init( {
   with_text = true,
   symbol_map = {
-    Text = "",
-    Method = "ƒ",
-    Function = "ﬦ",
-    Constructor = "",
-    Variable = "",
-    Class = "",
-    Interface = "ﰮ",
-    Module = "",
-    Property = "",
-    Unit = "",
-    Value = "",
-    Enum = "了",
-    Keyword = "",
-    Snippet = "﬌",
-    Color = "",
-    File = "",
-    Folder = "",
-    EnumMember = "",
-    Constant = "",
-    Struct = "",
+    Text = '',
+    Method = 'ƒ',
+    Function = 'ﬦ',
+    Constructor = '',
+    Variable = '',
+    Class = '',
+    Interface = 'ﰮ',
+    Module = '',
+    Property = '',
+    Unit = '',
+    Value = '',
+    Enum = '了',
+    Keyword = '',
+    Snippet = '﬌',
+    Color = '',
+    File = '',
+    Folder = '',
+    EnumMember = '',
+    Constant = '',
+    Struct = '',
   },
 }
 )
 
-local cmp = require "cmp"
+local cmp = require 'cmp'
 
 cmp.setup {
   mapping = {
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-e>"] = cmp.mapping.close(),
-    ["<c-y>"] = cmp.mapping(
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<c-y>'] = cmp.mapping(
       cmp.mapping.confirm {
         behavior = cmp.ConfirmBehavior.Insert,
         select = true,
       },
-      { "i", "c" }
+      { 'i', 'c' }
     ),
-    ["<CR>"] = cmp.mapping {
+    ['<CR>'] = cmp.mapping {
       i = cmp.mapping.confirm { select = true },
     },
-    ["<Right>"] = cmp.mapping {
+    ['<Right>'] = cmp.mapping {
       i = cmp.mapping.confirm { select = true },
     },
-    ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
-    ["<c-space>"] = cmp.mapping {
+    ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' }),
+    ['<c-space>'] = cmp.mapping {
       i = cmp.mapping.complete(),
       c = function(
       )
@@ -80,22 +80,22 @@ cmp.setup {
       end,
     },
 
-    ["<c-q>"] = cmp.mapping.confirm {
+    ['<c-q>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
   },
 
   sources = {
-    { name = "gh_issues" },
-    { name = "nvim_lua" },
-    { name = "nvim_lsp" },
-    { name = "path" },
-    { name = "luasnip" },
-    { name = "buffer", keyword_length = 5 },
-    { name = "file", keyword_length = 5 },
-    { name = "file_line", keyword_length = 5 },
-    { name = "spell" },
+    { name = 'gh_issues' },
+    { name = 'nvim_lua' },
+    { name = 'nvim_lsp' },
+    { name = 'path' },
+    { name = 'luasnip' },
+    { name = 'buffer', keyword_length = 5 },
+    { name = 'file', keyword_length = 5 },
+    { name = 'file_line', keyword_length = 5 },
+    { name = 'spell' },
   },
 
   sorting = {
@@ -105,8 +105,8 @@ cmp.setup {
       cmp.config.compare.score,
 
       function(entry1, entry2)
-        local _, entry1_under = entry1.completion_item.label:find "^_+"
-        local _, entry2_under = entry2.completion_item.label:find "^_+"
+        local _, entry1_under = entry1.completion_item.label:find '^_+'
+        local _, entry2_under = entry2.completion_item.label:find '^_+'
         entry1_under = entry1_under or 0
         entry2_under = entry2_under or 0
         if entry1_under > entry2_under then
@@ -123,11 +123,11 @@ cmp.setup {
     },
   },
   documentation = {
-      border = { "╭", "─", "╮", "|", "╯", "─", "╰", "|" },
+      border = { '╭', '─', '╮', '|', '╯', '─', '╰', '|' },
   },
   snippet = {
     expand = function(args)
-      require("luasnip").lsp_expand(args.body)
+      require('luasnip').lsp_expand(args.body)
     end,
   },
 
@@ -136,14 +136,14 @@ cmp.setup {
       with_text = true,
       menu =
       {
-        nvim_lsp = "ﲳ",
-        nvim_lua = "",
-        treesitter = "",
-        path = "ﱮ",
-        buffer = "﬘",
-        zsh = "",
-        vsnip = "",
-        spell = "暈",
+        nvim_lsp = 'ﲳ',
+        nvim_lua = '',
+        treesitter = '',
+        path = 'ﱮ',
+        buffer = '﬘',
+        zsh = '',
+        vsnip = '',
+        spell = '暈',
       }
     },
   },
@@ -154,28 +154,28 @@ cmp.setup {
   },
 }
 
-cmp.setup.cmdline("/", {
+cmp.setup.cmdline('/', {
   completion = {
     autocomplete = false,
   },
   sources = cmp.config.sources({
-    { name = "nvim_lsp_document_symbol" },
+    { name = 'nvim_lsp_document_symbol' },
   }, {
   }),
 })
 
-cmp.setup.cmdline(":", {
+cmp.setup.cmdline(':', {
   completion = {
     autocomplete = false,
   },
 
   sources = cmp.config.sources({
     {
-      name = "path",
+      name = 'path',
     },
   }, {
     {
-      name = "cmdline",
+      name = 'cmdline',
       max_item_count = 20,
       keyword_length = 4,
     },

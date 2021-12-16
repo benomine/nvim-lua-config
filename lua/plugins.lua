@@ -14,7 +14,7 @@ vim.cmd([[
 
 vim.cmd([[packadd packer.nvim]])
 
-return require('packer').startup({function(use)
+return require('packer').startup({ function(use)
   use 'wbthomason/packer.nvim'
 
   use 'tpope/vim-surround'
@@ -36,6 +36,13 @@ return require('packer').startup({function(use)
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
 
+  use {
+   'goolord/alpha-nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function ()
+        require'alpha'.setup(require'alpha.themes.startify'.opts)
+    end
+  }
   use 'vim-test/vim-test'
 
   use 'nvim-treesitter/nvim-treesitter'
@@ -45,6 +52,7 @@ return require('packer').startup({function(use)
   use 'neovim/nvim-lspconfig'
   use 'tami5/lspsaga.nvim'
   use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-path'
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/vim-vsnip-integ'
   use 'hrsh7th/cmp-nvim-lsp'
@@ -53,13 +61,14 @@ return require('packer').startup({function(use)
   use 'onsails/lspkind-nvim'
   use 'b0o/schemastore.nvim'
   use 'mattn/emmet-vim'
+  use 'mfussenegger/nvim-jdtls'
 
   use {
-      'lewis6991/gitsigns.nvim',
-      requires = { 'nvim-lua/plenary.nvim' },
-      config = function()
-          require('gitsigns').setup()
-      end,
+    'lewis6991/gitsigns.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+        require('gitsigns').setup()
+    end,
   }
 
   if PACKER_BOOTSTRAP then
@@ -71,29 +80,33 @@ return require('packer').startup({function(use)
   require('luasnip.loaders.from_vscode').lazy_load()
 
   require('nvim-treesitter.configs').setup {
-  playground = {
-    enable = true,
-    disable = {},
-    updatetime = 25,
-    persist_queries = false,
-    keybindings = {
-      toggle_query_editor = 'o',
-      toggle_hl_groups = 'i',
-      toggle_injected_languages = 't',
-      toggle_anonymous_nodes = 'a',
-      toggle_language_display = 'I',
-      focus_language = 'f',
-      unfocus_language = 'F',
-      update = 'R',
-      goto_node = '<cr>',
-      show_help = '?',
+    highlight = {
+      enable = true,
     },
-  }
-}
-
-end,
-config = {
-    display = {
-        open_fn = require('packer').float,
+    playground = {
+      enable = true,
+      disable = {},
+      updatetime = 25,
+      persist_queries = false,
+      keybindings = {
+        toggle_query_editor = 'o',
+        toggle_hl_groups = 'i',
+        toggle_injected_languages = 't',
+        toggle_anonymous_nodes = 'a',
+        toggle_language_display = 'I',
+        focus_language = 'f',
+        unfocus_language = 'F',
+        update = 'R',
+        goto_node = '<cr>',
+        show_help = '?',
+      },
     }
-}})
+  }
+
+  end,
+  config = {
+    display = {
+      open_fn = require('packer').float,
+    }
+  }
+})

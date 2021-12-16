@@ -33,7 +33,8 @@ local on_attach = function(_ , bufnr)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
-local lsp_servers = {'omnisharp',
+local lsp_servers = {
+  'omnisharp',
   'gopls',
   'fsautocomplete',
   'vimls',
@@ -47,9 +48,9 @@ local lsp_servers = {'omnisharp',
   'html',
   'sumneko_lua',
   'ltex',
-  'jdtls',
   'svelte',
-  'groovyls'
+  'groovyls',
+  'sqlls'
 }
 
 local omnisharp_path_bin = lsp_servers_path .. '/omnisharp/Omnisharp.exe'
@@ -89,9 +90,9 @@ for _, server in ipairs(lsp_servers) do
       cmd = { lsp_servers_path .. '/ltex-ls/bin/ltex-ls.bat' },
       settings = {
         ltex = {
-          enabled= {"latex", "tex", "bib", "md"},
-          checkFrequency="save",
-          language="fr-CA"
+          enabled = { 'latex', 'tex', 'bib', 'md' },
+          checkFrequency = 'save',
+          language = 'fr-CA'
         }
       },
       on_attach = on_attach,
@@ -118,18 +119,6 @@ for _, server in ipairs(lsp_servers) do
       capabilities = capabilities,
       on_attach = on_attach,
     }
-  elseif server == 'jdtls' then
-    lspconfig[server].setup {
-	    cmd = { 'java', '-jar', lsp_servers_path .. '/jdtls/features/org.eclipse.equinox.executable_3.8.1400.v20211117-0650.jar' },
-	    on_attach = on_attach,
-	    capabilities = capabilities,
-    }
-  elseif server == 'cssls' or server == 'html' then
-    lspconfig[server].setup {
-	    cmd = { "vscode-css-language-server.cmd", "--stdio" },
-	    on_attach = on_attach,
-	    capabilities = capabilities,
-    }
   elseif server == 'sumneko_lua' then
     lspconfig[server].setup {
       cmd = {sumneko_binary, '-E', sumneko_root_path .. '/main.lua'};
@@ -144,7 +133,7 @@ for _, server in ipairs(lsp_servers) do
             globals = {'vim'},
           },
           workspace = {
-            library = vim.api.nvim_get_runtime_file("", true),
+            library = vim.api.nvim_get_runtime_file('', true),
           },
           telemetry = {
             enable = false,
@@ -160,3 +149,4 @@ for _, server in ipairs(lsp_servers) do
     }
   end
 end
+

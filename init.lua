@@ -4,4 +4,4 @@ require('keymaps')
 require('lsp_servers')
 require('telescope_config')
 require('completion')
-
+require('java')
