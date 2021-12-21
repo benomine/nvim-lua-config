@@ -1,6 +1,7 @@
 local keymap = vim.api.nvim_set_keymap
 local options = { noremap = true }
 
+keymap('', '<Space>', '<Nop>', options)
 keymap('n', '<C-f>', ':NERDTreeFocus<CR>', options)
 keymap('n', '<C-t>', ':NERDTreeToggle<CR>', options)
 keymap('n', '<C-n>', ':NERDTree<CR>', options)

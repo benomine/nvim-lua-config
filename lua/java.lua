@@ -1,4 +1,5 @@
 local lsp_servers_path = vim.fn.stdpath('data') .. '/lsp_servers'
+local jdtls = require('jdtls')
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -8,7 +9,7 @@ local on_attach = function(_ , bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-  require('jdtls.setup').add_commands()
+  jdtls.setup.add_commands()
 
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -34,9 +35,7 @@ local on_attach = function(_ , bufnr)
 end
 
 local javalsp_jar = lsp_servers_path .. '/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar'
-local lombox_jar = lsp_servers_path .. '/jdtls/features/lombok.jar'
-local java_agent = '-javaagent:' .. lombox_jar
-local Xbootclasspath = '-Xbootclasspath/a:' .. lombox_jar
+local lombok_jar = lsp_servers_path .. '/jdtks/lombok.jar'
 
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace_dir = '/path/to/workspace-root/' .. project_name
@@ -49,11 +48,11 @@ local java_config = {
     '-Dlog.protocol=true',
     '-Dlog.level=ALL',
     '-Xms1g',
+    '-Xmx2G',
+    '-javaagent:' .. lombok_jar,
     '--add-modules=ALL-SYSTEM',
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-    --java_agent,
-    --Xbootclasspath,
     '-jar', javalsp_jar,
     '-configuration', lsp_servers_path .. '/jdtls/config_win',
     '-data', workspace_dir,
@@ -61,26 +60,26 @@ local java_config = {
   root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'}),
   capabilities = capabilities,
   on_attach = on_attach,
-  --[[settings = {
+  settings = {
    codeGeneration = {
      toString = {
         template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
       },
       useBlocks = true,
     },
-  }]]--
+  },
 }
 
 java_config.on_init = function(client, _)
   client.notify('workspace/didChangeConfiguration', { settings = java_config.settings })
 end
 
-local extendedClientCapabilities = require('jdtls').extendedClientCapabilities;
+local extendedClientCapabilities = jdtls.extendedClientCapabilities;
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true;
 java_config.init_options = {
 --  bundles = bundles;
   extendedClientCapabilities = extendedClientCapabilities;
 }
 
-require('jdtls').start_or_attach(java_config)
+--jdtls.start_or_attach(java_config)
 

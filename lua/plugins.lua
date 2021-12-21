@@ -19,6 +19,8 @@ return require('packer').startup({ function(use)
 
   use 'tpope/vim-surround'
   use 'tpope/vim-commentary'
+  use 'tpope/vim-rhubarb'
+  use 'tpope/vim-fugitive'
 
   use 'preservim/nerdtree'
 
@@ -35,7 +37,9 @@ return require('packer').startup({ function(use)
   use 'nvim-telescope/telescope-github.nvim'
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
+  use 'lewis6991/gitsigns.nvim'
 
+  -- Dashboard
   use {
    'goolord/alpha-nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
@@ -43,33 +47,34 @@ return require('packer').startup({ function(use)
         require'alpha'.setup(require'alpha.themes.startify'.opts)
     end
   }
-  use 'vim-test/vim-test'
+  use 'folke/which-key.nvim'
 
+  -- TreeSitter
   use 'nvim-treesitter/nvim-treesitter'
   use 'nvim-treesitter/playground'
 
+  -- LSP
+  use 'williamboman/nvim-lsp-installer'
   use 'ray-x/lsp_signature.nvim'
   use 'neovim/nvim-lspconfig'
   use 'tami5/lspsaga.nvim'
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/cmp-emoji'
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/vim-vsnip-integ'
   use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-nvim-lua'
   use 'L3MON4D3/LuaSnip'
   use 'rafamadriz/friendly-snippets'
   use 'onsails/lspkind-nvim'
   use 'b0o/schemastore.nvim'
   use 'mattn/emmet-vim'
   use 'mfussenegger/nvim-jdtls'
-
-  use {
-    'lewis6991/gitsigns.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
-    config = function()
-        require('gitsigns').setup()
-    end,
-  }
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'vim-test/vim-test'
+  use {'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
 
   if PACKER_BOOTSTRAP then
     require('packer').sync()

@@ -23,23 +23,26 @@ lspkind.init( {
     Text = '',
     Method = 'ƒ',
     Function = 'ﬦ',
-    Constructor = '',
+    Constructor = '',
     Variable = '',
-    Class = '',
-    Interface = 'ﰮ',
+    Class = '',
+    Interface = '',
     Module = '',
     Property = '',
     Unit = '',
     Value = '',
-    Enum = '了',
-    Keyword = '',
+    Enum = '',
+    Keyword = '',
     Snippet = '﬌',
     Color = '',
-    File = '',
-    Folder = '',
+    File = '',
+    Folder = '',
     EnumMember = '',
-    Constant = '',
-    Struct = '',
+    Constant = '',
+    Struct = '',
+    Event = '',
+    Operator = "",
+    TypeParameter = "",
   },
 }
 )
@@ -138,7 +141,8 @@ cmp.setup {
       {
         nvim_lsp = 'ﲳ',
         nvim_lua = '',
-        treesitter = '',
+        luasnip = 'פֿ',
+        treesitter = '',
         path = 'ﱮ',
         buffer = '﬘',
         zsh = '',
@@ -169,11 +173,13 @@ cmp.setup.cmdline(':', {
     autocomplete = false,
   },
 
-  sources = cmp.config.sources({
+  sources = cmp.config.sources(
+  {
     {
       name = 'path',
     },
-  }, {
+  },
+  {
     {
       name = 'cmdline',
       max_item_count = 20,

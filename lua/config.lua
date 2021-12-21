@@ -16,7 +16,8 @@ vim.bo.syntax = 'enable'
 
 vim.o.termguicolors = true
 vim.g.onedark_terminal_italics = 2
-
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 vim.g.minimap_width = 10
 vim.g.minimap_auto_start = 1
 vim.g.minimap_auto_start_win_enter = 1
