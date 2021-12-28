@@ -1,5 +1,13 @@
 local status, servers = pcall(require, "nvim-lsp-installer.servers")
-local _, lsp_installer = pcall(require, "nvim-lsp-installer")
+local status_installer , lsp_installer = pcall(require, "nvim-lsp-installer")
+
+if not status then
+  return
+end
+
+if not status_installer then
+  return
+end
 
 lsp_installer.settings({
     ui = {
@@ -10,10 +18,6 @@ lsp_installer.settings({
         }
     }
 })
-
-if not status then
-  return
-end
 
 local lsp_servers = {
   'omnisharp',

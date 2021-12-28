@@ -1,5 +1,9 @@
 local lsp_servers_path = vim.fn.stdpath('data') .. '/lsp_servers'
-local jdtls = require('jdtls')
+local status, jdtls = pcall(require, 'jdtls')
+
+if not status then
+  return
+end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true

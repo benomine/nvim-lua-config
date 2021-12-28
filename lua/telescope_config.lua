@@ -1,5 +1,21 @@
-local tele = require('telescope')
+local status, tele = pcall(require, 'telescope')
 
---tele.load_extension('fzf')
-tele.load_extension('gh')
-tele.load_extension('flutter')
+if not status then
+  return
+end
+
+tele.setup {
+    defaults = {
+
+    prompt_prefix = " ",
+    selection_caret = " ",
+    path_display = { "smart" },
+    extensions = {
+     --'fzf',
+     'gh',
+     'flutter',
+     'media_files',
+     'packer'
+    }
+  }
+}

@@ -16,7 +16,12 @@ vim.api.nvim_set_keymap(
   { noremap = true }
 )
 
-local lspkind = require 'lspkind'
+local status, lspkind = pcall(require, 'lspkind')
+
+if not status then
+  return
+end 
+
 lspkind.init( {
   with_text = true,
   symbol_map = {
@@ -47,7 +52,11 @@ lspkind.init( {
 }
 )
 
-local cmp = require 'cmp'
+local status_cmp, cmp = pcall(require, 'cmp')
+
+if not status_cmp then
+  return
+end 
 
 cmp.setup {
   mapping = {

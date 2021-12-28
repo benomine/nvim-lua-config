@@ -1,5 +1,14 @@
 local pid = vim.fn.getpid()
-local lspconfig = require('lspconfig')
+local status, lspconfig = pcall(require,'lspconfig')
+
+if not status then
+  return
+end
+
+require('lspsaga').init_lsp_saga()
+
+require('luasnip.loaders.from_vscode').lazy_load()
+
 local lsp_servers_path = vim.fn.stdpath('data') .. '/lsp_servers'
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

@@ -26,6 +26,9 @@ return require('packer').startup({ function(use)
 
   use 'vim-airline/vim-airline'
   use 'rafi/awesome-vim-colorschemes'
+  use 'lunarvim/darkplus.nvim'
+  use 'Mofiqul/codedark.nvim'
+  use 'folke/tokyonight.nvim'
   use 'ryanoasis/vim-devicons'
   use 'tc50cal/vim-terminal'
   use 'github/copilot.vim'
@@ -35,11 +38,13 @@ return require('packer').startup({ function(use)
 
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-telescope/telescope-github.nvim'
+  use 'nvim-telescope/telescope-media-files.nvim'
+  use 'nvim-telescope/telescope-packer.nvim'
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'lewis6991/gitsigns.nvim'
 
-  -- Dashboard
+  -- Dashboard --
   use {
    'goolord/alpha-nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
@@ -50,8 +55,9 @@ return require('packer').startup({ function(use)
   use 'folke/which-key.nvim'
 
   -- TreeSitter
-  use 'nvim-treesitter/nvim-treesitter'
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'nvim-treesitter/playground'
+  use 'p00f/nvim-ts-rainbow'
 
   -- LSP
   use 'williamboman/nvim-lsp-installer'
@@ -74,39 +80,12 @@ return require('packer').startup({ function(use)
   use 'mfussenegger/nvim-jdtls'
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'vim-test/vim-test'
+  use 'folke/lsp-colors.nvim'
   use {'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
 
   if PACKER_BOOTSTRAP then
     require('packer').sync()
   end
-
-  require('lspsaga').init_lsp_saga()
-
-  require('luasnip.loaders.from_vscode').lazy_load()
-
-  require('nvim-treesitter.configs').setup {
-    highlight = {
-      enable = true,
-    },
-    playground = {
-      enable = true,
-      disable = {},
-      updatetime = 25,
-      persist_queries = false,
-      keybindings = {
-        toggle_query_editor = 'o',
-        toggle_hl_groups = 'i',
-        toggle_injected_languages = 't',
-        toggle_anonymous_nodes = 'a',
-        toggle_language_display = 'I',
-        focus_language = 'f',
-        unfocus_language = 'F',
-        update = 'R',
-        goto_node = '<cr>',
-        show_help = '?',
-      },
-    }
-  }
 
   end,
   config = {
