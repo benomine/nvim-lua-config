@@ -24,7 +24,10 @@ return require('packer').startup({ function(use)
 
   use 'preservim/nerdtree'
 
-  use 'vim-airline/vim-airline'
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
   use 'rafi/awesome-vim-colorschemes'
   use 'lunarvim/darkplus.nvim'
   use 'Mofiqul/codedark.nvim'
@@ -35,7 +38,7 @@ return require('packer').startup({ function(use)
   use 'wfxr/minimap.vim'
   use 'voldikss/vim-floaterm'
   use 'ap/vim-css-color'
-
+  use 'rebelot/kanagawa.nvim'
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-telescope/telescope-github.nvim'
   use 'nvim-telescope/telescope-media-files.nvim'
@@ -83,6 +86,11 @@ return require('packer').startup({ function(use)
   use 'folke/lsp-colors.nvim'
   use {'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
 
+  require('lualine').setup {
+    options = {
+      theme = "kanagawa"
+    }
+  }
   if PACKER_BOOTSTRAP then
     require('packer').sync()
   end

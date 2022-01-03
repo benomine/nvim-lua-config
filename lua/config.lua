@@ -24,4 +24,4 @@ vim.g.minimap_auto_start_win_enter = 1
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 
-vim.cmd([[colorscheme darkplus]])
+vim.cmd([[colorscheme kanagawa]])
