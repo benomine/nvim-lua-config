@@ -1,10 +1,9 @@
-local status, gitsign = pcall(require, 'gitsigns')
-
-if not status then
+local status_ok, gitsigns = pcall(require, "gitsigns")
+if not status_ok then
   return
 end
 
-gitsign.setup {
+gitsigns.setup {
   signs = {
     add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
     change = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
@@ -36,7 +35,7 @@ gitsign.setup {
   status_formatter = nil,
   max_file_length = 40000,
   preview_config = {
-    border = "single",
+    border = "rounded",
     style = "minimal",
     relative = "cursor",
     row = 0,

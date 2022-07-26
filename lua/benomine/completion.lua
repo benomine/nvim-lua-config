@@ -20,10 +20,10 @@ local status, lspkind = pcall(require, 'lspkind')
 
 if not status then
   return
-end 
+end
 
-lspkind.init( {
-  with_text = true,
+lspkind.init({
+  mode = 'symbol_text',
   symbol_map = {
     Text = '',
     Method = 'ƒ',
@@ -49,14 +49,13 @@ lspkind.init( {
     Operator = "",
     TypeParameter = "",
   },
-}
-)
+})
 
 local status_cmp, cmp = pcall(require, 'cmp')
 
 if not status_cmp then
   return
-end 
+end
 
 cmp.setup {
   mapping = {
@@ -134,8 +133,8 @@ cmp.setup {
       cmp.config.compare.order,
     },
   },
-  documentation = {
-      border = { '╭', '─', '╮', '|', '╯', '─', '╰', '|' },
+  window = {
+    documentation = cmp.config.window.bordered()
   },
   snippet = {
     expand = function(args)
@@ -145,7 +144,7 @@ cmp.setup {
 
   formatting = {
     format = lspkind.cmp_format {
-      with_text = true,
+      mode = 'symbol',
       menu =
       {
         nvim_lsp = 'ﲳ',
@@ -183,17 +182,16 @@ cmp.setup.cmdline(':', {
   },
 
   sources = cmp.config.sources(
-  {
     {
-      name = 'path',
+      {
+        name = 'path',
+      },
     },
-  },
-  {
     {
-      name = 'cmdline',
-      max_item_count = 20,
-      keyword_length = 4,
-    },
-  }),
+      {
+        name = 'cmdline',
+        max_item_count = 20,
+        keyword_length = 4,
+      },
+    }),
 })
-

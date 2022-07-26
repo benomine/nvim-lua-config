@@ -5,17 +5,15 @@ if not status then
 end
 
 tele.setup {
-    defaults = {
-
+  defaults = {
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },
     extensions = {
-     --'fzf',
-     'gh',
-     'flutter',
-     'media_files',
-     'packer'
+      --'fzf',
+      'gh',
+      'packer',
+      'projects'
     }
   }
 }
