@@ -44,5 +44,6 @@ mason_config.setup {
     'taplo',
     'jtdls',
     'sqlfluff',
+    'yamllint'
   },
 }
