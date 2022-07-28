@@ -1,5 +1,5 @@
-require('benomine.config')
 require('benomine.plugins')
+require('benomine.config')
 require('benomine.keymaps')
 require('benomine.project')
 require('benomine.tree')

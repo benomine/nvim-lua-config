@@ -20,8 +20,8 @@ vim.g.maplocalleader = " "
 
 vim.g.OmniSharp_server_path = vim.fn.stdpath('data') .. 'mason/packages/omnisharp/Omnisharp.exe'
 
-vim.cmd('colorscheme nightfox')
-
+--vim.cmd('colorscheme nightfox')
+vim.cmd('colorscheme tokyonight')
 vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
 
 vim.opt.backup = false

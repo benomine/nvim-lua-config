@@ -36,20 +36,15 @@ Aller sur le lien [Ltex](https://github.com/valentjn/ltex-ls/releases) pour tél
 
 Aller sur le lien [Jdtls](https://projects.eclipse.org/projects/eclipse.jdt.ls) pour télécharger les dernières release.
 
+* Changements :
+
+Passage à [mason](https://)
+
+
 * Utilisation de snippets, ici [LuaSnip](https://github.com/L3MON4D3/LuaSnip) + [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
 
 ``use "rafamadriz/friendly-snippets"``
 ``require("luasnip/loaders/from_vscode").lazy_load()``
 
-
-# Installation de Minimap
-
-* Installation nécessaire de [🛰 code-minimap](https://github.com/wfxr/code-minimap)
-
-``scoop bucket add extras``
-``scoop install code-minimap``
-
-* Installation via packer
-``use 'wfxr/minimap.vim'``
-
+* Minimap out!
 

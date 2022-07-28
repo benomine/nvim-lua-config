@@ -47,6 +47,15 @@ return packer.startup({ function(use)
       require('impatient').enable_profile()
     end,
   }
+  use {
+    'j-hui/fidget.nvim',
+    config = function()
+      require('fidget').setup({
+        text = { spinner = "dots", },
+        window = { blend = 0, relative = "editor" },
+      })
+    end,
+  }
   use { "ahmedkhalf/project.nvim" }
   use { "nvim-lualine/lualine.nvim" }
   use {
@@ -88,6 +97,7 @@ return packer.startup({ function(use)
   use { 'rafi/awesome-vim-colorschemes' }
   use { 'EdenEast/nightfox.nvim' }
   use { 'lunarvim/darkplus.nvim' }
+  use { 'folke/tokyonight.nvim' }
 
   -- Dashboard --
   use { 'goolord/alpha-nvim' }

@@ -85,25 +85,25 @@ local right_pad = {
   end,
 }
 
-local left_pad_alt = {
-  function()
-    return " "
-  end,
-  padding = 0,
-  color = function()
-    return { bg = "#32363e" }
-  end,
-}
-
-local right_pad_alt = {
-  function()
-    return " "
-  end,
-  padding = 0,
-  color = function()
-    return { bg = "#32363e" }
-  end,
-}
+-- local left_pad_alt = {
+--   function()
+--     return " "
+--   end,
+--   padding = 0,
+--   color = function()
+--     return { bg = "#32363e" }
+--   end,
+-- }
+--
+-- local right_pad_alt = {
+--   function()
+--     return " "
+--   end,
+--   padding = 0,
+--   color = function()
+--     return { bg = "#32363e" }
+--   end,
+-- }
 
 local mode = {
   function()
@@ -174,8 +174,8 @@ local filetype = {
       "nil",
     }
 
-    local return_val = function(str)
-      return hl_str(" ", "SLSep") .. hl_str(str, "SLFT") .. hl_str("", "SLSep")
+    local return_val = function(string)
+      return hl_str(" ", "SLSep") .. hl_str(string, "SLFT") .. hl_str("", "SLSep")
     end
 
     if str == "TelescopePrompt" then
@@ -192,7 +192,6 @@ local filetype = {
 
     if str == "toggleterm" then
       local term = "%#SLTermIcon#" .. " " .. "%*" .. "%#SLFT#" .. get_term_num() .. "%*"
-
       return return_val(term)
     end
 
@@ -201,7 +200,6 @@ local filetype = {
     else
       return return_val(str)
     end
-    return return_val(str)
   end,
   icons_enabled = false,
   padding = 0,
@@ -384,7 +382,7 @@ lualine.setup {
   options = {
     globalstatus = true,
     icons_enabled = true,
-    theme = theme,
+    theme = 'tokyonight',
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     disabled_filetypes = { "alpha", "dashboard" },
