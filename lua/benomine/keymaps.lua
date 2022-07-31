@@ -23,7 +23,7 @@ keymap('n', '<leader>ff', ':Telescope find_files<CR>', options)
 keymap('n', '<leader>ft', ':Telescope live_grep<CR>', options)
 keymap('n', '<leader>fp', ':Telescope projects<CR>', options)
 keymap('n', '<leader>fb', ':Telescope buffers<CR>', options)
-
+keymap('n', 'gp', ":lua require('peek').Peek('definition')<CR>", options)
 keymap('i', '<expr> <c-j>', '("<C-n>")', options)
 keymap('i', '<expr> <c-k>', '("<C-p>")', options)
 keymap('i', 'jk', '<Esc>', options)
@@ -33,6 +33,7 @@ keymap('i', '<expr><TAB>', 'pumvisible() ? "<C-n>" : "<TAB>"', options)
 
 keymap('v', '<', '<gv', options)
 keymap('v', '>', '>gv', options)
+keymap('n', "<leader>tl", "<cmd>lua require('lsp_lines').toggle()<CR>", options)
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", options)

@@ -41,6 +41,7 @@ return packer.startup({ function(use)
   use { 'kyazdani42/nvim-web-devicons' }
   use { 'kyazdani42/nvim-tree.lua' }
   use { 'akinsho/bufferline.nvim', tag = 'v2.*' }
+  use { 'lunarvim/peek.lua' }
   use {
     'lewis6991/impatient.nvim',
     config = function()
@@ -129,12 +130,10 @@ return packer.startup({ function(use)
   use { 'jose-elias-alvarez/null-ls.nvim' }
   use { 'vim-test/vim-test' }
   use { 'folke/lsp-colors.nvim' }
-  use { 'akinsho/flutter-tools.nvim' }
   use { 'OmniSharp/omnisharp-vim' }
   use { 'dense-analysis/ale' }
   use { 'SmiteshP/nvim-navic' }
   use { 'mfussenegger/nvim-dap' }
-  -- use { 'Pocco81/DAPInstall.nvim' }
   use { 'rcarriga/nvim-dap-ui' }
   use { 'simrat39/rust-tools.nvim' }
   use {
@@ -161,7 +160,12 @@ return packer.startup({ function(use)
       })
     end
   }
-
+  use({
+    "benomine/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").setup()
+    end,
+  })
   if PACKER_BOOTSTRAP then
     require('packer').sync()
   end

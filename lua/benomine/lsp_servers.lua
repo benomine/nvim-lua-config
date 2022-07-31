@@ -5,11 +5,17 @@ if not status then
   return
 end
 
-require('lspsaga').init_lsp_saga()
+local saga_status, lspsaga = pcall(require, 'lspsaga')
+if not saga_status then
+  return
+end
 
-require('luasnip.loaders.from_vscode').lazy_load()
+lspsaga.init_lsp_saga()
 
-local signature = require('lsp_signature')
+local signature_status, signature = pcall(require, 'lsp_signature')
+if not signature_status then
+  return
+end
 
 signature.setup({
   bind = true,
@@ -18,7 +24,12 @@ signature.setup({
   }
 })
 
-local navic = require('nvim-navic')
+require('luasnip.loaders.from_vscode').lazy_load()
+
+local navic_status, navic = pcall(require, 'nvim-mavic')
+if not navic_status then
+  return  
+end
 
 navic.setup {
   icons = {
@@ -55,8 +66,6 @@ navic.setup {
   depth_limit_indicator = "..",
 }
 
-local lsp_servers_path = vim.fn.stdpath('data') .. '/mason/packages'
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
@@ -73,6 +82,8 @@ local on_attach = function(client, bufnr)
   signature.on_attach(client, bufnr)
 
   local opts = { noremap = true, silent = true }
+
+  vim.diagnostic.config({ virtual_text = false })
 
   buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -108,11 +119,11 @@ local lsp_servers = {
   'ltex',
   'svelte',
   'groovyls',
-  'dartls',
   'rust_analyzer',
   'taplo',
   'clangd',
   'jdtls',
+  'sqls'
 }
 
 local runtime_path = vim.split(package.path, ';')
@@ -222,4 +233,3 @@ for _, server in ipairs(lsp_servers) do
   end
 end
 
-require('flutter-tools').setup {}

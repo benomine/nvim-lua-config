@@ -38,12 +38,12 @@ mason_config.setup {
     'svelte',
     'groovyls',
     'sqlls',
-    'dartls',
     'powershell_es',
     'rust_analyzer',
     'taplo',
     'jtdls',
     'sqlfluff',
-    'yamllint'
+    'yamllint',
+    'sqls'
   },
 }
