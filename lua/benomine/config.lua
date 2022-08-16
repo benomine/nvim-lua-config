@@ -1,6 +1,6 @@
 vim.o.smarttab = true
-vim.o.mouse = 'a'
-vim.o.encoding = 'utf-8'
+vim.o.mouse = "a"
+vim.o.encoding = "utf-8"
 vim.o.showmatch = true
 
 vim.wo.number = true
@@ -11,18 +11,18 @@ vim.bo.expandtab = true
 vim.bo.tabstop = 4
 vim.bo.shiftwidth = 4
 vim.bo.smartindent = true
-vim.bo.fileencoding = 'utf-8'
-vim.bo.syntax = 'enable'
+vim.bo.fileencoding = "utf-8"
+vim.bo.syntax = "enable"
 
 vim.o.termguicolors = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.g.OmniSharp_server_path = vim.fn.stdpath('data') .. 'mason/packages/omnisharp/Omnisharp.exe'
+vim.g.OmniSharp_server_path = vim.fn.stdpath("data") .. "mason/packages/omnisharp/Omnisharp.exe"
 
 --vim.cmd('colorscheme nightfox')
-vim.cmd('colorscheme tokyonight')
-vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
+vim.cmd("colorscheme tokyonight")
+vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 
 vim.opt.backup = false
 vim.opt.clipboard = "unnamedplus"
@@ -56,12 +56,12 @@ vim.opt.signcolumn = "yes"
 vim.opt.wrap = false
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
-vim.opt.fillchars.eob=" "
-vim.opt.shortmess:append "c"
+vim.opt.fillchars.eob = " "
+vim.opt.shortmess:append("c")
 vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.iskeyword:append("-")
 
 vim.diagnostic.config({
-  virtual_text = false,
-  virtual_line = true
+	virtual_text = false,
+	virtual_line = true,
 })
