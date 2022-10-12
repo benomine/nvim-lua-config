@@ -18,10 +18,15 @@ vim.o.termguicolors = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.g.OmniSharp_server_path = vim.fn.stdpath("data") .. "mason/packages/omnisharp/Omnisharp.exe"
+local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
+
+vim.g.OmniSharp_server_path = mason_path .. "/bin/omnisharp"
+vim.o.background = 'dark'
 
 --vim.cmd('colorscheme nightfox')
-vim.cmd("colorscheme tokyonight")
+-- vim.cmd("colorscheme tokyonight")
+
+vim.cmd("colorscheme darkplus")
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 
 vim.opt.backup = false

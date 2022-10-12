@@ -106,6 +106,7 @@ cmp.setup({
 		{ name = "file", keyword_length = 5 },
 		{ name = "file_line", keyword_length = 5 },
 		{ name = "spell" },
+    { name = "plugins" },
 	},
 
 	sorting = {

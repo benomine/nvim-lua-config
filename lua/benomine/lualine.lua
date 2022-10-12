@@ -5,7 +5,7 @@ if not status_ok then
 	return
 end
 
-local status_theme_ok, theme = pcall(require, "lualine.themes.tokyonight")
+local status_theme_ok, theme = pcall(require, "lualine.themes.darkplus")
 if not status_theme_ok then
 	return
 end
@@ -84,26 +84,6 @@ local right_pad = {
 		return { fg = "#32363e", bg = "none" }
 	end,
 }
-
--- local left_pad_alt = {
---   function()
---     return " "
---   end,
---   padding = 0,
---   color = function()
---     return { bg = "#32363e" }
---   end,
--- }
---
--- local right_pad_alt = {
---   function()
---     return " "
---   end,
---   padding = 0,
---   color = function()
---     return { bg = "#32363e" }
---   end,
--- }
 
 local mode = {
 	function()
@@ -384,7 +364,8 @@ lualine.setup({
 	options = {
 		globalstatus = true,
 		icons_enabled = true,
-		theme = "tokyonight",
+		-- theme = "tokyonight",
+    theme = 'vscode',
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
 		disabled_filetypes = { "alpha", "dashboard" },
@@ -393,7 +374,7 @@ lualine.setup({
 	sections = {
 		lualine_a = { left_pad, mode, branch, diff, right_pad },
 		lualine_b = { left_pad, diagnostics, right_pad },
-		lualine_c = { left_pad, current_signature, right_pad },
+		lualine_c = { },
 		lualine_x = { language_server, spaces, filetype },
 		lualine_y = {},
 		lualine_z = { location, progress },

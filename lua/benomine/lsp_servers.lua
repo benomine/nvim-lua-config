@@ -1,3 +1,58 @@
+local mason_status, mason = pcall(require, "mason")
+if not mason_status then
+	return
+end
+
+local lsp_servers = {
+	"omnisharp",
+	"gopls",
+	"fsautocomplete",
+	"vimls",
+	"yamlls",
+	"dockerls",
+	"tsserver",
+	"volar",
+	"cssls",
+	"jsonls",
+	"pyright",
+	"html",
+	"sumneko_lua",
+	"ltex",
+	"svelte",
+	"groovyls",
+	"rust_analyzer",
+	"taplo",
+	"clangd",
+	"jdtls",
+	"sqls",
+}
+
+mason.setup({
+	ui = {
+		icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
+		},
+	},
+})
+
+local mason_config_status, mason_config = pcall(require, "mason-lspconfig")
+if not mason_config_status then
+	return
+end
+
+mason_config.setup({
+	ensure_installed = lsp_servers,
+	automatic_installation = true,
+})
+
+mason_config.setup_handlers({
+	function(server_name)
+		require('lspconfig')[server_name].setup {}
+	end,
+})
+
 local status, lspconfig = pcall(require, "lspconfig")
 if not status then
 	return
@@ -103,30 +158,6 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
 	buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
-
-local lsp_servers = {
-	"omnisharp",
-	"gopls",
-	"fsautocomplete",
-	"vimls",
-	"yamlls",
-	"dockerls",
-	"tsserver",
-	"volar",
-	"cssls",
-	"jsonls",
-	"pyright",
-	"html",
-	"sumneko_lua",
-	"ltex",
-	"svelte",
-	"groovyls",
-	"rust_analyzer",
-	"taplo",
-	"clangd",
-	"jdtls",
-	"sqls",
-}
 
 for _, server in ipairs(lsp_servers) do
 	if server == "ltex" then

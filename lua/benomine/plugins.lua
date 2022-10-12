@@ -93,12 +93,13 @@ return packer.startup({ function(use)
     end,
   }
   use { 'RRethy/vim-illuminate' }
-
   -- Colorscheme
   use { 'rafi/awesome-vim-colorschemes' }
   use { 'EdenEast/nightfox.nvim' }
   use { 'lunarvim/darkplus.nvim' }
   use { 'folke/tokyonight.nvim' }
+  use { 'rebelot/kanagawa.nvim' }
+  use { 'Mofiqul/vscode.nvim' }
 
   -- Dashboard --
   use { 'goolord/alpha-nvim' }
@@ -113,7 +114,18 @@ return packer.startup({ function(use)
   use { 'ray-x/lsp_signature.nvim' }
   use { 'neovim/nvim-lspconfig' }
   use { 'tami5/lspsaga.nvim' }
-  use { 'hrsh7th/nvim-cmp' }
+  use { 'hrsh7th/nvim-cmp',
+    requires = {
+      {
+      "KadoBOT/cmp-plugins",
+      config = function()
+        require("cmp-plugins").setup({
+          files = { ".*\\.lua" }
+        })
+      end,
+    },
+    }
+  }
   use { 'hrsh7th/cmp-path' }
   use { 'hrsh7th/cmp-cmdline' }
   use { 'hrsh7th/cmp-emoji' }
@@ -130,7 +142,7 @@ return packer.startup({ function(use)
   use { 'jose-elias-alvarez/null-ls.nvim' }
   use { 'vim-test/vim-test' }
   use { 'folke/lsp-colors.nvim' }
-  use { 'OmniSharp/omnisharp-vim' }
+  -- use { 'OmniSharp/omnisharp-vim' }
   use { 'dense-analysis/ale' }
   use { 'SmiteshP/nvim-navic' }
   use { 'mfussenegger/nvim-dap' }
