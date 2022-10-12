@@ -26,7 +26,7 @@ end
 
 dap.adapters.netcoredbg = {
   type = "executable",
-  command = mason_path .. '/packages/netcoredbg/netcoredbg/netcoredbg',
+  command = mason_path .. 'packages/netcoredbg/netcoredbg/netcoredbg',
   args = { '--interpreter=vscode' }
 }
 
