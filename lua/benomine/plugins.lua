@@ -1,54 +1,38 @@
+vim.opt.termguicolors = true
+
 local fn = vim.fn
-local install_path = fn.stdpath('data') .. '/site/pack/plugins/start/packer.nvim'
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
-    install_path })
-  print "Installing packer close and reopen Neovim..."
-  vim.cmd [[packadd packer.nvim]]
+local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
-
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-  return
-end
-
-packer.init {
-  display = {
-    open_fn = function()
-      return require("packer.util").float { border = "rounded" }
-    end,
-  },
-}
-
-return packer.startup({ function(use)
-  use { 'wbthomason/packer.nvim' }
-
-  use { 'nvim-telescope/telescope.nvim' }
-  use { 'nvim-telescope/telescope-github.nvim' }
-  use { 'nvim-telescope/telescope-packer.nvim' }
-  use { 'tpope/vim-commentary' }
-  use { 'tpope/vim-surround' }
-  use { 'tpope/vim-rhubarb' }
-  use { 'tpope/vim-fugitive' }
-  use { 'kyazdani42/nvim-web-devicons' }
-  use { 'kyazdani42/nvim-tree.lua' }
-  use { 'akinsho/bufferline.nvim', tag = 'v2.*' }
-  use { 'lunarvim/peek.lua' }
-  use {
+require("lazy").setup({
+   'nvim-telescope/telescope.nvim',
+   'nvim-telescope/telescope-github.nvim',
+   'nvim-telescope/telescope-packer.nvim',
+   'tpope/vim-commentary',
+   'tpope/vim-surround',
+   'tpope/vim-rhubarb',
+   'tpope/vim-fugitive',
+   'kyazdani42/nvim-web-devicons',
+   'kyazdani42/nvim-tree.lua',
+   'akinsho/bufferline.nvim',
+   'lunarvim/peek.lua',
+   {
     'lewis6991/impatient.nvim',
     config = function()
       require('impatient').enable_profile()
     end,
-  }
-  use {
+   },
+   {
     'j-hui/fidget.nvim',
     config = function()
       require('fidget').setup({
@@ -56,113 +40,106 @@ return packer.startup({ function(use)
         window = { blend = 0, relative = "editor" },
       })
     end,
-  }
-  use { "ahmedkhalf/project.nvim" }
-  use { "nvim-lualine/lualine.nvim" }
-  use {
+   },
+   "ahmedkhalf/project.nvim",
+   "nvim-lualine/lualine.nvim",
+   {
     'tiagovla/scope.nvim',
     config = function()
       require('scope').setup()
     end
-  }
-  use { "kylechui/nvim-surround", config = function()
-    require('nvim-surround').setup()
-  end
-  }
-  use { 'ryanoasis/vim-devicons' }
-  use {
+   },
+   {
+    "kylechui/nvim-surround", config = function()
+      require('nvim-surround').setup()
+    end
+   },
+   'ryanoasis/vim-devicons',
+   {
     'akinsho/toggleterm.nvim',
     config = function()
       require('toggleterm').setup()
     end
-  }
-  use { 'ap/vim-css-color' }
-  use { 'nvim-lua/popup.nvim' }
-  use { 'nvim-lua/plenary.nvim' }
-  use { 'lewis6991/gitsigns.nvim' }
-  use {
+   },
+   'ap/vim-css-color',
+   'nvim-lua/popup.nvim',
+   'nvim-lua/plenary.nvim',
+   'lewis6991/gitsigns.nvim',
+   {
     'norcalli/nvim-colorizer.lua',
     config = function()
       require('colorizer').setup()
     end
-  }
-  use {
+   },
+   {
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup()
     end,
-  }
-  use { 'RRethy/vim-illuminate' }
+   },
+   'RRethy/vim-illuminate',
   -- Colorscheme
-  use { 'rafi/awesome-vim-colorschemes' }
-  use { 'EdenEast/nightfox.nvim' }
-  use { 'lunarvim/darkplus.nvim' }
-  use { 'folke/tokyonight.nvim' }
-  use { 'rebelot/kanagawa.nvim' }
-  use { 'Mofiqul/vscode.nvim' }
+   'rafi/awesome-vim-colorschemes',
+   'EdenEast/nightfox.nvim',
+   'lunarvim/darkplus.nvim',
+   'folke/tokyonight.nvim',
+   'rebelot/kanagawa.nvim',
+   'Mofiqul/vscode.nvim',
 
   -- Dashboard --
-  use { 'goolord/alpha-nvim' }
-  use { 'folke/which-key.nvim' }
+   'goolord/alpha-nvim',
+   'folke/which-key.nvim',
 
   -- TreeSitter
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
 
   -- LSP / Dap / Snippets / Formatting / Completion
-  use { "williamboman/mason.nvim" }
-  use { "williamboman/mason-lspconfig.nvim" }
-  use { 'ray-x/lsp_signature.nvim' }
-  use { 'neovim/nvim-lspconfig' }
-  use { 'tami5/lspsaga.nvim' }
-  use { 'hrsh7th/nvim-cmp',
-    requires = {
-      {
-      "KadoBOT/cmp-plugins",
-      config = function()
-        require("cmp-plugins").setup({
-          files = { ".*\\.lua" }
-        })
-      end,
-    },
-    }
-  }
-  use { 'hrsh7th/cmp-path' }
-  use { 'hrsh7th/cmp-cmdline' }
-  use { 'hrsh7th/cmp-emoji' }
-  use { 'hrsh7th/vim-vsnip' }
-  use { 'hrsh7th/vim-vsnip-integ' }
-  use { 'hrsh7th/cmp-nvim-lsp' }
-  use { 'hrsh7th/cmp-nvim-lua' }
-  use { 'L3MON4D3/LuaSnip' }
-  use { 'rafamadriz/friendly-snippets' }
-  use { 'onsails/lspkind-nvim' }
-  use { 'b0o/schemastore.nvim' }
-  use { 'mattn/emmet-vim' }
-  use { 'mfussenegger/nvim-jdtls' }
-  use { 'jose-elias-alvarez/null-ls.nvim' }
-  use { 'vim-test/vim-test' }
-  use { 'folke/lsp-colors.nvim' }
-  -- use { 'OmniSharp/omnisharp-vim' }
-  use { 'dense-analysis/ale' }
-  use { 'SmiteshP/nvim-navic' }
-  use { 'mfussenegger/nvim-dap' }
-  use { 'rcarriga/nvim-dap-ui' }
-  use { 'simrat39/rust-tools.nvim' }
-  use {
+   "williamboman/mason.nvim",
+   "williamboman/mason-lspconfig.nvim",
+   'ray-x/lsp_signature.nvim',
+   'neovim/nvim-lspconfig',
+   'tami5/lspsaga.nvim',
+   'hrsh7th/nvim-cmp',
+   'hrsh7th/cmp-path',
+   'hrsh7th/cmp-cmdline',
+   'hrsh7th/cmp-emoji',
+   'hrsh7th/vim-vsnip',
+   'hrsh7th/vim-vsnip-integ',
+   'hrsh7th/cmp-nvim-lsp',
+   'hrsh7th/cmp-nvim-lua',
+   'L3MON4D3/LuaSnip',
+   'rafamadriz/friendly-snippets',
+   'onsails/lspkind-nvim',
+   'b0o/schemastore.nvim',
+   'mattn/emmet-vim',
+   'mfussenegger/nvim-jdtls',
+   'jose-elias-alvarez/null-ls.nvim',
+   'vim-test/vim-test',
+   'folke/lsp-colors.nvim',
+  --  'OmniSharp/omnisharp-vim',
+   'dense-analysis/ale',
+   'SmiteshP/nvim-navic',
+   'mfussenegger/nvim-dap',
+   'rcarriga/nvim-dap-ui',
+   'simrat39/rust-tools.nvim',
+   {
     'saecki/crates.nvim',
     config = function()
       require('crates').setup()
     end,
-  }
+   },
 
-  use {
+   {
     'ThePrimeagen/refactoring.nvim',
     config = function()
       require('refactoring').setup()
     end
-  }
+   },
 
-  use {
+   "olexsmir/gopher.nvim",
+   "leoluz/nvim-dap-go",
+
+   {
     'ThePrimeagen/harpoon',
     config = function()
       require("harpoon").setup({
@@ -171,21 +148,11 @@ return packer.startup({ function(use)
         }
       })
     end
-  }
-  use({
+   },
+   {
     "benomine/lsp_lines.nvim",
     config = function()
       require("lsp_lines").setup()
     end,
-  })
-  if PACKER_BOOTSTRAP then
-    require('packer').sync()
-  end
-
-end,
-  config = {
-    display = {
-      open_fn = require('packer').float,
-    }
-  }
+   }
 })
