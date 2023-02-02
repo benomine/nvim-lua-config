@@ -33,7 +33,7 @@ keymap("i", "<expr><TAB>", 'pumvisible() ? "<C-n>" : "<TAB>"', options)
 
 keymap("v", "<", "<gv", options)
 keymap("v", ">", ">gv", options)
-keymap("n", "<leader>tl", "<cmd>lua require('lsp_lines').toggle()<CR>", options)
+-- keymap("n", "<leader>tl", "<cmd>lua require('lsp_lines').toggle()<CR>", options)
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", options)

@@ -116,7 +116,7 @@ require("lazy").setup({
    'jose-elias-alvarez/null-ls.nvim',
    'vim-test/vim-test',
    'folke/lsp-colors.nvim',
-  --  'OmniSharp/omnisharp-vim',
+   'OmniSharp/omnisharp-vim',
    'dense-analysis/ale',
    'SmiteshP/nvim-navic',
    'mfussenegger/nvim-dap',
@@ -149,10 +149,10 @@ require("lazy").setup({
       })
     end
    },
-   {
-    "benomine/lsp_lines.nvim",
-    config = function()
-      require("lsp_lines").setup()
-    end,
-   }
-})
+--    {
+--     "benomine/lsp_lines.nvim",
+--     config = function()
+--       require("lsp_lines").setup()
+--     end,
+--    }
+ })

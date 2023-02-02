@@ -24,7 +24,7 @@ vim.g.OmniSharp_server_path = mason_path .. "/bin/omnisharp"
 vim.o.background = 'dark'
 
 --vim.cmd('colorscheme nightfox')
--- vim.cmd("colorscheme tokyonight")
+--vim.cmd("colorscheme tokyonight")
 
 vim.cmd("colorscheme darkplus")
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
