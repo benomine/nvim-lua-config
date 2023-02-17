@@ -149,6 +149,7 @@ require("lazy").setup({
   "mfussenegger/nvim-dap",
   "rcarriga/nvim-dap-ui",
   "simrat39/rust-tools.nvim",
+  'github/copilot.vim',
   {
     "saecki/crates.nvim",
     config = function()

@@ -16,7 +16,7 @@ local lsp_servers = {
 	"jsonls",
 	"pyright",
 	"html",
-	"sumneko_lua",
+	"lua_ls",
 	"ltex",
 	"svelte",
 	"groovyls",
@@ -177,7 +177,7 @@ for _, server in ipairs(lsp_servers) do
 				},
 			},
 		})
-	elseif server == "sumneko_lua" then
+	elseif server == "lua_ls" then
 		lspconfig[server].setup({
 			on_attach = on_attach,
 			settings = {
