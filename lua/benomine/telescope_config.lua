@@ -12,7 +12,6 @@ tele.setup {
     extensions = {
       --'fzf',
       'gh',
-      'packer',
       'projects'
     }
   }

@@ -30,9 +30,9 @@ require("lazy").setup({
     "rcarriga/nvim-notify",
     config = function()
       require("notify").setup({
-         background_colour = "#000000",
+        background_colour = "#000000",
       })
-    end
+    end,
   },
   {
     "folke/trouble.nvim",
@@ -119,7 +119,31 @@ require("lazy").setup({
   "folke/which-key.nvim",
 
   -- TreeSitter
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "java",
+          "c_sharp",
+          "go",
+          "dockerfile",
+          "html",
+          "javascript",
+          "json",
+          "lua",
+          "regex",
+          "rust",
+          "sql",
+          "terraform",
+          "yaml",
+          "typescript",
+          "css",
+        },
+      })
+    end,
+  },
 
   -- LSP / Dap / Snippets / Formatting / Completion
   "williamboman/mason.nvim",
@@ -149,7 +173,7 @@ require("lazy").setup({
   "mfussenegger/nvim-dap",
   "rcarriga/nvim-dap-ui",
   "simrat39/rust-tools.nvim",
-  'github/copilot.vim',
+  "github/copilot.vim",
   {
     "saecki/crates.nvim",
     config = function()
